@@ -1,63 +1,115 @@
-# PickAndOrder
+# @acozmanca/pick-and-order
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+A **generic Angular component** that lets users pick items from a source list and order them in a target list.  
+Built with Angular CDK Drag & Drop. Supports **custom filtering** of the source list via a user-supplied function.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Features
+
+- **Pick & order** items between source and target lists  
+- **Drag & drop** reordering with Angular CDK  
+- **Custom filtering** – pass in your own filtering function to control what shows up in the source list  
+- **i18n ready** – integrates with `@ngx-translate/core`  
+- ⚡ Works with Angular 14+ (tested on Angular 19)
+
+---
+
+## Installation
 
 ```bash
-ng generate component component-name
+npm install @acozmanca/pick-and-order
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+You’ll also need the **peer dependencies**:
 
 ```bash
-ng generate --help
+npm install @angular/cdk @ngx-translate/core @ngx-translate/http-loader
 ```
 
-## Building
+---
 
-To build the library, run:
+## Usage
+
+### Import the component
+
+For **standalone components**:
+
+```ts
+import { PickAndOrderComponent } from '@acozmanca/pick-and-order';
+
+@Component({
+  standalone: true,
+  selector: 'app-my-feature',
+  imports: [PickAndOrderComponent],
+  template: `
+    <ac-pick-and-order
+      [sourceItems]="allItems"
+      [targetItems]="selectedItems"
+      [filterFn]="myFilterFn"
+      (targetItemsChange)="onSelectionChange($event)">
+    </ac-pick-and-order>
+  `,
+})
+export class MyFeatureComponent {
+  allItems = ['Apple', 'Banana', 'Orange', 'Grape'];
+  selectedItems = ['Banana'];
+
+  // Example filter: show only items starting with A
+  myFilterFn = (item: string) => item.startsWith('A');
+
+  onSelectionChange(updated: string[]) {
+    console.log('Updated target items:', updated);
+  }
+}
+```
+
+---
+
+## API
+
+### Inputs
+
+| Input            | Type                    | Description                                                                 |
+|------------------|-------------------------|-----------------------------------------------------------------------------|
+| `sourceItems`    | `T[]`                   | The full list of available items                                            |
+| `targetItems`    | `T[]`                   | Items currently picked (ordered list)                                       |
+| `filterFn`       | `(item: T) => boolean`  | Optional. Custom filter function applied to the source list                 |
+
+### Outputs
+
+| Output              | Type   | Description                                    |
+|---------------------|--------|------------------------------------------------|
+| `targetItemsChange` | `T[]`  | Emits the updated list whenever target changes |
+
+---
+
+## Internationalization
+
+This library uses [`@ngx-translate/core`](https://github.com/ngx-translate/core).  
+Provide your translations normally and the component will use them for UI labels.
+
+---
+
+## 🛠 Development
+
+Clone the repo, then build the library:
 
 ```bash
+npm install
 ng build pick-and-order
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/pick-and-order
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Test locally in another Angular app:
 
 ```bash
-ng test
+cd dist/pick-and-order
+npm pack
+# install the generated .tgz in your consuming app
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## License
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT © [Alexandru Cozmanca](https://github.com/alexandrucozmanca)
