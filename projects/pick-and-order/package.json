@@ -1,5 +1,5 @@
 {
-  "name": "@acozmanca/pick-and-order",
+  "name": "@alexandru.cozmanca/pick-and-order",
   "version": "1.0.0",
   "description": "Generic Angular pick and order component with drag-and-drop",
   "author": "Alexandru Cozmanca",
