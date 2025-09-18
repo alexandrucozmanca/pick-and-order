@@ -1,0 +1,152 @@
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+.po-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 780px) {
+  .po-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.po-column {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.po-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.po-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.po-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.05s ease;
+}
+
+.po-item:hover {
+  background: #f2f2f2;
+  border-color: #dcdcdc;
+}
+
+.po-item:active {
+  transform: translateY(1px);
+}
+
+.po-ordered {
+  counter-reset: num;
+  margin: 0;
+  padding-left: 0;
+}
+
+.po-ordered-item {
+  list-style: none;
+  margin: 0 0 8px 0;
+}
+
+.po-ordered-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #fdfdfd;
+}
+
+.po-drag-handle {
+  cursor: grab;
+  user-select: none;
+  display: inline-block;
+  text-align: center;
+  color: #888;
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.2;
+}
+
+.po-ordered-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.po-empty {
+  color: #777;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* Limit list heights */
+.po-list,
+.po-ordered {
+  max-height: 460px; /* ~10 items */
+  overflow-y: auto; /* show scrollbar when exceeded */
+  scrollbar-width: thin; /* Firefox: thinner scrollbar */
+}
+
+/* Optional: prettier scrollbar for WebKit (Chrome/Edge) */
+.po-list::-webkit-scrollbar,
+.po-ordered::-webkit-scrollbar {
+  width: 6px;
+}
+
+.po-list::-webkit-scrollbar-thumb,
+.po-ordered::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.po-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  .po-clear {
+    padding: 0;
+    line-height: 1;
+    text-decoration: none;
+  }
+}

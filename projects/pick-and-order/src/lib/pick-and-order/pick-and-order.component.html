@@ -1,0 +1,61 @@
+<div class="po-container">
+  <!-- Left: source list -->
+  <div class="po-column po-left">
+    <div class="po-header" jhiTranslate="po.available">Available</div>
+
+    <div *ngIf="filtered" class="po-filter">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="filterTerm"
+        [placeholder]="'po.search' | translate: {}"
+        aria-label="Filter available items"
+      />
+      <button
+        *ngIf="filterTerm"
+        type="button"
+        class="btn btn-link btn-sm po-clear"
+        (click)="filterTerm = ''"
+        [title]="'po.clear' | translate"
+        aria-label="Clear filter"
+      >
+        ✕
+      </button>
+    </div>
+
+    <ul class="po-list">
+      <li *ngFor="let item of filteredItems; trackBy: trackByIndex">
+        <button type="button" class="po-item" (click)="addItem(item)">
+          <span class="po-item-label">{{ getItemName(item) }}</span>
+          <span class="btn btn-primary btn-sm" jhiTranslate="po.add">Add</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Right: selected & ordered list -->
+  <div class="po-column po-right">
+    <div class="po-header" jhiTranslate="po.selected">Selected (ordered)</div>
+
+    <ol class="po-ordered cdk-drop-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li class="po-ordered-item cdk-drag" *ngFor="let s of selected; let i = index; trackBy: trackByIndex" cdkDrag>
+        <div class="po-ordered-row">
+          <span class="po-drag-handle" cdkDragHandle [title]="'po.drag' | translate">⋮⋮</span>
+          <span class="po-ordered-label">{{ getItemName(s) }}</span>
+
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="removeAt(i)"
+            aria-label="Remove item"
+            [title]="'po.remove' | translate"
+          >
+            ✕
+          </button>
+        </div>
+      </li>
+    </ol>
+
+    <div class="po-empty" *ngIf="selected && selected.length === 0" jhiTranslate="po.click">Click items on the left to add them here.</div>
+  </div>
+</div>
