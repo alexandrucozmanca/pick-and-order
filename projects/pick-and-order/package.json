@@ -1,0 +1,35 @@
+{
+  "name": "@acozmanca/pick-and-order",
+  "version": "1.0.0",
+  "description": "Generic Angular pick and order component with drag-and-drop",
+  "author": "Alexandru Cozmanca",
+  "license": "MIT",
+  "keywords": ["angular", "component", "dragdrop", "pick-and-order"],
+  "publishConfig": { "access": "public" },
+  "sideEffects": false,
+
+  "peerDependencies": {
+    "@angular/core": ">=14.0.0",
+    "@angular/common": ">=14.0.0",
+    "@angular/forms": ">=14.0.0",
+    "@angular/cdk": ">=14.0.0",
+    "@ngx-translate/core": ">=14.0.0",
+    "@ngx-translate/http-loader": ">=7.0.0"
+  },
+
+  "dependencies": {},
+
+  "devDependencies": {
+    "ng-packagr": "^19.2.2",
+    "@angular/compiler": "19.2.15",
+    "@angular/compiler-cli": "19.2.15",
+    "typescript": "^5.5.0"
+  },
+
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+      "entryFile": "src/public-api.ts"
+    }
+  }
+}
