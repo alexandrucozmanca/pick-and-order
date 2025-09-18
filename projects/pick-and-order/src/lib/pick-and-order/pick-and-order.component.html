@@ -1,15 +1,15 @@
 <div class="po-container">
   <!-- Left: source list -->
   <div class="po-column po-left">
-    <div class="po-header" jhiTranslate="po.available">Available</div>
+    <div class="po-header">{{ 'po.available' | translate }}</div>
 
     <div *ngIf="filtered" class="po-filter">
       <input
         type="text"
         class="form-control"
         [(ngModel)]="filterTerm"
-        [placeholder]="'po.search' | translate: {}"
-        aria-label="Filter available items"
+        [placeholder]="'po.search' | translate"
+        aria-label="{{ 'po.search' | translate }}"
       />
       <button
         *ngIf="filterTerm"
@@ -17,7 +17,7 @@
         class="btn btn-link btn-sm po-clear"
         (click)="filterTerm = ''"
         [title]="'po.clear' | translate"
-        aria-label="Clear filter"
+        aria-label="{{ 'po.clear' | translate }}"
       >
         ✕
       </button>
@@ -27,7 +27,7 @@
       <li *ngFor="let item of filteredItems; trackBy: trackByIndex">
         <button type="button" class="po-item" (click)="addItem(item)">
           <span class="po-item-label">{{ getItemName(item) }}</span>
-          <span class="btn btn-primary btn-sm" jhiTranslate="po.add">Add</span>
+          <span class="btn btn-primary btn-sm">{{ 'po.add' | translate }}</span>
         </button>
       </li>
     </ul>
@@ -35,20 +35,28 @@
 
   <!-- Right: selected & ordered list -->
   <div class="po-column po-right">
-    <div class="po-header" jhiTranslate="po.selected">Selected (ordered)</div>
+    <div class="po-header">{{ 'po.selected' | translate }}</div>
 
     <ol class="po-ordered cdk-drop-list" cdkDropList (cdkDropListDropped)="drop($event)">
       <li class="po-ordered-item cdk-drag" *ngFor="let s of selected; let i = index; trackBy: trackByIndex" cdkDrag>
         <div class="po-ordered-row">
-          <span class="po-drag-handle" cdkDragHandle [title]="'po.drag' | translate">⋮⋮</span>
+          <span
+            class="po-drag-handle"
+            cdkDragHandle
+            [title]="'po.drag' | translate"
+            aria-label="{{ 'po.drag' | translate }}"
+          >
+            ⋮⋮
+          </span>
+
           <span class="po-ordered-label">{{ getItemName(s) }}</span>
 
           <button
             type="button"
             class="btn btn-danger btn-sm"
             (click)="removeAt(i)"
-            aria-label="Remove item"
             [title]="'po.remove' | translate"
+            aria-label="{{ 'po.remove' | translate }}"
           >
             ✕
           </button>
@@ -56,6 +64,8 @@
       </li>
     </ol>
 
-    <div class="po-empty" *ngIf="selected && selected.length === 0" jhiTranslate="po.click">Click items on the left to add them here.</div>
+    <div class="po-empty" *ngIf="selected && selected.length === 0">
+      {{ 'po.click' | translate }}
+    </div>
   </div>
 </div>

@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import SharedModule from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 type NameField<T> = T extends string ? never : Extract<keyof T, string>;
 
 @Component({
   selector: 'pick-and-order',
   standalone: true,
-  imports: [CommonModule, DragDropModule, SharedModule, FormsModule],
+  imports: [CommonModule, DragDropModule, FormsModule, TranslateModule],
   templateUrl: './pick-and-order.component.html',
   styleUrls: ['./pick-and-order.component.scss'],
 })
