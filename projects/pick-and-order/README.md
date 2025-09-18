@@ -1,4 +1,4 @@
-# @acozmanca/pick-and-order
+# @alexandru.cozmanca/pick-and-order
 
 A **generic Angular component** that lets users pick items from a source list and order them in a target list.  
 Built with Angular CDK Drag & Drop. Supports **custom filtering** of the source list via a user-supplied function.
@@ -18,7 +18,7 @@ Built with Angular CDK Drag & Drop. Supports **custom filtering** of the source 
 ## Installation
 
 ```bash
-npm install @acozmanca/pick-and-order
+npm install @alexandru.cozmanca/pick-and-order
 ```
 
 You’ll also need the **peer dependencies**:
@@ -36,7 +36,7 @@ npm install @angular/cdk @ngx-translate/core @ngx-translate/http-loader
 For **standalone components**:
 
 ```ts
-import { PickAndOrderComponent } from '@acozmanca/pick-and-order';
+import { PickAndOrderComponent } from '@alexandru.cozmanca/pick-and-order';
 
 @Component({
   standalone: true,
